@@ -1,0 +1,46 @@
+<% if logged_in? %>
+
+<table>
+  <table border="3"> <!--この指定するとボーダー線が表示-->
+  <tr>
+    <th>時間管理票</th><td>指定勤務時間</th><th colspan="2">基本時間</th><th>初日</th>
+  </tr>
+  <tr>
+    <td>所属 <%= @belongs %></td><td>氏名 <%= @name %></td><td>コード</td><td>出勤日数</td><td>締め</td>
+  </tr>
+  <tr>
+    <td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+</table>
+
+
+<table>
+  <table border="3"> <!--この指定するとボーダー線が表示-->
+  <tr>
+    <th rowspan="2">日付</th><td rowspan="2">曜日</th><th colspan="3">出社</th><th colspan="3">退社</th><th rowspan="2">在社時間</th><th rowspan="2">備考</th>
+  </tr>
+  <tr>
+    <td>時</td><td>分</td><td> 出社</td><td>時</td><td>分</td><td> 退社</td>
+  </tr>
+  <tr>
+    <td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+</table>
+
+
+<% else %>
+
+<div class="center jumbotron">
+  <h1>勤怠システム</h1>
+
+  <!--<h2>-->
+  <!--  This is the home page for the-->
+  <!--  <a href="http://railstutorial.jp/">Ruby on Rails Tutorial</a>-->
+  <!--  sample application.-->
+  <!--</h2>-->
+
+  <%= link_to "ログイン", signup_path, class: "btn btn-lg btn-primary" %>
+</div>
+
+            
+<% end %>          
