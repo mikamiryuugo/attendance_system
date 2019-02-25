@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  attend_time: 2019-02-24 23:55:02
+  leave_time: 2019-02-24 23:55:02
+  work_time: 1
+  remarks: MyString
+
+two:
+  user: two
+  attend_time: 2019-02-24 23:55:02
+  leave_time: 2019-02-24 23:55:02
+  work_time: 1
+  remarks: MyString
