@@ -7,7 +7,8 @@ class StaticPagesController < ApplicationController
       @belongs = current_user.belongs
        # 日付はview側でeach文で回しつつ、日付部分のフォーマット変えて表示
       @dates = (Date.today.beginning_of_month..Date.today.end_of_month)
-
+      @attendance = current_user.attendances.build
+      @user = current_user
     end
 
     # app/views/リソース名/アクション名.html.erb

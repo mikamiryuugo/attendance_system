@@ -41,7 +41,13 @@
     <td><%= day.strftime('%a') %></td>
     <td></td>
     <td></td>
-    <td></td>
+    <td>
+    <%= form_for(@attendance) do |f| %>
+    <%= hidden_field_tag :user_id, @user.id %>
+    <%= hidden_field_tag :attend_time, Time.now %>
+    <%= f.submit '出勤', class: 'btn btn-primary' %>
+    <% end %>
+    </td>
     <td></td>
     <td></td>
     <td></td>
