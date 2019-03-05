@@ -39,6 +39,6 @@ class AttendancesController < ApplicationController
   private
   
   def attendance_params
-    params.require(:attendance).permit(:attend_time, :leave_time, :work_time, :remarks)
+    params.require(:attendance).permit(:attend_time, :leave_time, :work_time, :remarks, :recorded_on)
   end
 end

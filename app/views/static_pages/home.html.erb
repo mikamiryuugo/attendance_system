@@ -41,14 +41,17 @@
     <td><%= day.strftime('%a') %></td>
     <td></td>
     <td></td>
+
     <td>
-    <% if day.strftime('%m/%d') == Date.today.strftime('%m/%d') %>
+    <% if attended(day) %>
+
+    <% elsif not_yet_attend?(day) %>
       <%= form_for(@attendance) do |f| %>
         <%= f.hidden_field :user_id, :value => @user.id %>
         <%= f.hidden_field :attend_time, :value => Time.now %>
+        <%= f.hidden_field :recorded_on, :value => Date.today %>
         <%= f.submit '出勤', class: 'btn btn-primary' %>
       <% end %>
-    <% elsif  %>
     
     <% else %>
     
