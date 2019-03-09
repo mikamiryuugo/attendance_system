@@ -24,10 +24,10 @@ class AttendancesController < ApplicationController
     @attendance = current_user.attendances.find(params[:id])
     @attendance.assign_attributes(attendance_params)
     if @attendance.save 
-      flash[:success] = "出勤時間を更新しました"
+      flash[:success] = "退勤時間を入力しました"
       redirect_to root_url
     else
-      flash[:danger] = "出勤時間の更新に失敗しました"
+      flash[:danger] = "退勤時間の入力にに失敗しました"
       render 'attendances/edit'
     end
   end

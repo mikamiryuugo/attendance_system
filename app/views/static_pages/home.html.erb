@@ -1,7 +1,7 @@
 <% if logged_in? %>
 
 <table>
-  <table border="3"> <!--この指定するとボーダー線が表示-->
+  <table border="3"> 
   <tr>
     <th>時間管理票</th><td>指定勤務時間</th><th colspan="2">基本時間</th><th>初日</th>
   </tr>
@@ -13,10 +13,9 @@
   </tr>
 </table>
 
-
 <table>
   <thead>
-  <table border="3"> <!--この指定するとボーダー線が表示-->
+  <table border="3"> 
   <tr>
     <th rowspan="2">日付</th>
     <td rowspan="2">曜日</th>
@@ -57,16 +56,18 @@
     <td></td>
     <td></td>
 
-
     <td>
-      <% if attended?(day) %>
-        退勤ボタン
+      <% if leaved? %>
+      <% elsif attended?(day) %>
+        <%= form_for(@attendance, url: attendance_path(id: @attendances.find(12)), html: {method: "patch"}) do |f| %>
+          <%= f.hidden_field :leave_time, :value => Time.now %>
+          <%= f.submit '退勤', class: 'btn btn-primary' %>
+        <% end %>
       <% else %>
 
       <% end %>
 
     </td>
-
 
     <td></td>
     <td></td>
@@ -75,20 +76,12 @@
   <% end %>
 </table>
 
-
 <% else %>
 
 <div class="center jumbotron">
   <h1>勤怠システム</h1>
 
-  <!--<h2>-->
-  <!--  This is the home page for the-->
-  <!--  <a href="http://railstutorial.jp/">Ruby on Rails Tutorial</a>-->
-  <!--  sample application.-->
-  <!--</h2>-->
-
   <%= link_to "ログイン", signup_path, class: "btn btn-lg btn-primary" %>
 </div>
 
-            
 <% end %>          
