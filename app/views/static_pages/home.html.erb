@@ -53,13 +53,13 @@
       <% end %>
     <% end  %>
     </td>
-    <td></td>
-    <td></td>
+    <td><%= leave_time(day) %></td>
+    <td><%= leaved_minute(day) %></td>
 
     <td>
-      <% if leaved? %>
+      <% if leaved?(day) %>
       <% elsif attended?(day) %>
-        <%= form_for(@attendance, url: attendance_path(id: @attendances.find(12)), html: {method: "patch"}) do |f| %>
+        <%= form_for(@attendance, url: attendance_path(id: @attendances.find_by(recorded_on: day.strftime('%a, %d %b %Y'))), html: {method: "patch"}) do |f| %>
           <%= f.hidden_field :leave_time, :value => Time.now %>
           <%= f.submit '退勤', class: 'btn btn-primary' %>
         <% end %>

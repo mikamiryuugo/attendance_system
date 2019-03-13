@@ -24,6 +24,15 @@ class AttendancesController < ApplicationController
     @attendance = current_user.attendances.find(params[:id])
     @attendance.assign_attributes(attendance_params)
     if @attendance.save 
+
+      # 計算してから、保存する
+      at = @attendance.attend_time.strftime('%H%M')
+      le = @attendance.leave_time.strftime('%H%M')
+      worked = at.to_i - le.to_i
+      @attendance.update(work_time: worked.abs)
+
+
+
       flash[:success] = "退勤時間を入力しました"
       redirect_to root_url
     else
