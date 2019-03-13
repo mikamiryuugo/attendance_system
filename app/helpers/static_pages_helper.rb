@@ -30,24 +30,31 @@ module StaticPagesHelper
   #出勤の時、分を表示するヘルパー
   def attend_time(day)
     return if current_user.attendances.find_by(recorded_on: day.strftime('%a, %d %b %Y')).nil?
-      current_user.attendances.find_by(recorded_on: day).attend_time
+    current_user.attendances.find_by(recorded_on: day).attend_time
   end
 
   def attend_minute(day)
     return if current_user.attendances.find_by(recorded_on: day.strftime('%a, %d %b %Y')).nil?
-      current_user.attendances.find_by(recorded_on: day).attend_time
+    current_user.attendances.find_by(recorded_on: day).attend_time
   end
 
 
   #退勤の時、分を表示するヘルパー
   def leave_time(day)
     return if current_user.attendances.find_by(recorded_on: day.strftime('%a, %d %b %Y')).nil?
-      current_user.attendances.find_by(recorded_on: day).leave_time
+    current_user.attendances.find_by(recorded_on: day).leave_time
   end
 
   def leaved_minute(day)
     return if current_user.attendances.find_by(recorded_on: day.strftime('%a, %d %b %Y')).nil?
-      current_user.attendances.find_by(recorded_on: day).leave_time
+    current_user.attendances.find_by(recorded_on: day).leave_time
+  end
+
+# 在社時間のヘルパー
+#recorded_onじゃだめだわ。leave_timeにしないと。ここで最近やったdatetime型にハマる検索をかく。
+  def worked_time(day)
+    return if current_user.attendances.find_by(leave_time: day.beginning_of_day..day.end_of_day).nil?
+    current_user.attendances.find_by(recorded_on: day).work_time
   end
 
 end
