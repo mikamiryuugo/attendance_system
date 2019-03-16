@@ -50,11 +50,13 @@ module StaticPagesHelper
     current_user.attendances.find_by(recorded_on: day).leave_time
   end
 
-# 在社時間のヘルパー
-#recorded_onじゃだめだわ。leave_timeにしないと。ここで最近やったdatetime型にハマる検索をかく。
   def worked_time(day)
     return if current_user.attendances.find_by(leave_time: day.beginning_of_day..day.end_of_day).nil?
-    current_user.attendances.find_by(recorded_on: day).work_time
+    at = current_user.attendances.find_by(recorded_on: day).attend_time.strftime('%H%M')
+    le = current_user.attendances.find_by(recorded_on: day).leave_time.strftime('%H%M')
+
+      worked = at.to_i - le.to_i
+      worked / 3600.0
   end
 
 end

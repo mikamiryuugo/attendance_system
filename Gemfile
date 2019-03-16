@@ -24,6 +24,7 @@ group :development, :test do
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
   gem 'pry-rails'
+  gem 'pry-nav'
 end
 
 group :development do
