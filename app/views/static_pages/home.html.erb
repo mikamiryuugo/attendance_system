@@ -45,12 +45,7 @@
     <% if attended?(day) %>
 
     <% elsif not_yet_attend?(day) %>
-      <%= form_for(@attendance) do |f| %>
-        <%= f.hidden_field :user_id, :value => @user.id %>
-        <%= f.hidden_field :attend_time, :value => Time.now %>
-        <%= f.hidden_field :recorded_on, :value => Date.today %>
-        <%= f.submit '出勤', class: 'btn btn-primary' %>
-      <% end %>
+      <%= button_to "出勤", attendances_path %>
     <% end  %>
     </td>
     <td><%= leave_time(day) %></td>

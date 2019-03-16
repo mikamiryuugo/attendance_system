@@ -4,7 +4,8 @@ class AttendancesController < ApplicationController
   # end
 
   def create
-    attendance = current_user.attendances.build(attendance_params)
+    attendance = current_user.attendances.build
+    attendance.assign_attributes(user_id: current_user.id, attend_time: Time.now, recorded_on: Date.today)
     if attendance.save
       flash[:success] = "出勤時間を入力しました"
       redirect_to root_url
