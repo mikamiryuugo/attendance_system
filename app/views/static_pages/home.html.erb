@@ -42,22 +42,20 @@
     <td><%= attend_minute(day) %></td>
 
     <td>
-    <% if attended?(day) %>
-
-    <% elsif not_yet_attend?(day) %>
-      <%= button_to "出勤", attendances_path %>
-    <% end  %>
+      <% if attended?(day) %>
+  
+      <% elsif not_yet_attend?(day) %>
+        <%= button_to "出勤", attendances_path %>
+      <% end %>
     </td>
     <td><%= leave_time(day) %></td>
     <td><%= leaved_minute(day) %></td>
 
     <td>
       <% if leaved?(day) %>
+      
       <% elsif attended?(day) %>
-        <%= form_for(@attendance, url: attendance_path(id: @attendances.find_by(recorded_on: day.strftime('%a, %d %b %Y'))), html: {method: "patch"}) do |f| %>
-          <%= f.hidden_field :leave_time, :value => Time.now %>
-          <%= f.submit '退勤', class: 'btn btn-primary' %>
-        <% end %>
+        <%= button_to "退勤", attendance_path(id: @attendance_id), method: :put %>
       <% else %>
 
       <% end %>

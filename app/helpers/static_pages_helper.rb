@@ -30,24 +30,24 @@ module StaticPagesHelper
   #出勤の時、分を表示するヘルパー
   def attend_time(day)
     return if current_user.attendances.find_by(recorded_on: day.strftime('%a, %d %b %Y')).nil?
-    current_user.attendances.find_by(recorded_on: day).attend_time
+    current_user.attendances.find_by(recorded_on: day).attend_time.strftime("%H")
   end
 
   def attend_minute(day)
     return if current_user.attendances.find_by(recorded_on: day.strftime('%a, %d %b %Y')).nil?
-    current_user.attendances.find_by(recorded_on: day).attend_time
+    current_user.attendances.find_by(recorded_on: day).attend_time.strftime("%M")
   end
 
 
   #退勤の時、分を表示するヘルパー
   def leave_time(day)
     return if current_user.attendances.find_by(recorded_on: day.strftime('%a, %d %b %Y')).nil?
-    current_user.attendances.find_by(recorded_on: day).leave_time
+    current_user.attendances.find_by(recorded_on: day).leave_time.strftime("%H")
   end
 
   def leaved_minute(day)
     return if current_user.attendances.find_by(recorded_on: day.strftime('%a, %d %b %Y')).nil?
-    current_user.attendances.find_by(recorded_on: day).leave_time
+    current_user.attendances.find_by(recorded_on: day).leave_time.strftime("%M")
   end
 
   def worked_time(day)

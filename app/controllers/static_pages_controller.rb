@@ -9,7 +9,8 @@ class StaticPagesController < ApplicationController
       @dates = (Date.today.beginning_of_month..Date.today.end_of_month)
       @attendance = current_user.attendances.build
       @attendances = current_user.attendances
-      
+      @attendance_id = current_user.attendances.find_by(recorded_on: Date.today).id
+      # @attendance_id = current_user.attendances.last.id だとnilになった。なんでか不明
       @user = current_user
     end
 

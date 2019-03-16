@@ -22,7 +22,7 @@ class AttendancesController < ApplicationController
 
   def update
     attendance = current_user.attendances.find(params[:id])
-    attendance.assign_attributes(attendance_params)
+    attendance.assign_attributes(leave_time: Time.now)
     if attendance.save
       flash[:success] = "退勤時間を入力しました"
       redirect_to root_url
